@@ -71,6 +71,7 @@ static void locate_block_device (enum block_type, const char *name);
 #endif
 
 int main (void) NO_RETURN;
+void hello_pintos (void);
 
 /* Pintos main program. */
 int
@@ -128,7 +129,7 @@ main (void)
 #endif
 
   printf ("Boot complete.\n");
-  
+  hello_pintos();
   /* Run actions specified on kernel command line. */
   run_actions (argv);
 
@@ -427,3 +428,13 @@ locate_block_device (enum block_type role, const char *name)
     }
 }
 #endif
+
+
+static void ady1(void* aux){
+	printf("hello, ady\n");
+}
+
+void hello_pintos (void){
+  thread_create("ady1", 10, &ady1, NULL);
+  //test your code here
+}
