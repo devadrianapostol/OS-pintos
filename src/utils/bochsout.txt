@@ -30,7 +30,7 @@
 00000000000i[     ]   SB16 support: no
 00000000000i[     ]   USB support: no
 00000000000i[     ]   VGA extension support:  
-00000000000i[MEM0 ] allocated memory at 0x7ffa954e5010. after alignment, vector=0x7ffa954e6000
+00000000000i[MEM0 ] allocated memory at 0x7f94487f0010. after alignment, vector=0x7f94487f1000
 00000000000i[MEM0 ] 4,00MB
 00000000000i[MEM0 ] rom at 0xffff0000/65536 ('/usr/local/share/bochs/BIOS-bochs-latest')
 00000000000i[MEM0 ] rom at 0xc0000/32768 ('/usr/local/share/bochs/VGABIOS-lgpl-latest')
@@ -52,7 +52,7 @@
 00000000000i[     ] init_mem of 'extfpuirq' plugin device by virtual method
 00000000000i[     ] init_mem of 'speaker' plugin device by virtual method
 00000000000i[     ] init_dev of 'harddrv' plugin device by virtual method
-00000000000i[HD   ] HD on ata0-0: '/tmp/S95VKuvxjl.dsk' 'flat' mode 
+00000000000i[HD   ] HD on ata0-0: '/tmp/dHl_KdBWTJ.dsk' 'flat' mode 
 00000000000i[HD   ] Using boot sequence disk, none, none
 00000000000i[HD   ] Floppy boot signature check is enabled
 00000000000i[     ] init_dev of 'keyboard' plugin device by virtual method
@@ -71,20 +71,6 @@
 00000000000i[     ] reset of 'parallel' plugin device by virtual method
 00000000000i[     ] reset of 'extfpuirq' plugin device by virtual method
 00000000000i[     ] reset of 'speaker' plugin device by virtual method
-00000000000i[     ] addr fff0 len 1
-00000000000i[     ] addr fff0 len 1
-00000000000i[     ] addr ffc0 len 40
-00000000000i[     ] addr fff0 len 8
-00000000000i[     ] addr fff0 len 7
-00000000000i[     ] addr c0020300 len 40
-00000000000i[     ] addr c00203a2 len 1
-00000000000i[     ] addr c00208c0 len 40
-00000000000i[     ] addr c0020900 len 40
-00000000000i[     ] addr c0020902 len 1
-00000000000i[     ] addr c0020310 len 1
-00000000000i[     ] setting breakpoint at c0020310
-00000000000i[     ] setting breakpoint at c00203a2
-00000000000i[     ] setting breakpoint at c0020902
 00000003740i[BIOS ] $Revision: 1.160 $ $Date: 2006/01/25 17:51:49 $
 00000317563i[KBD  ] reset-disable command received
 00000425250i[VBIOS] VGABios $Id: vgabios.c,v 1.63 2005/12/26 19:50:26 vruppert Exp $
@@ -93,38 +79,27 @@
 00000786523e[HD   ] ata0: device set to 1 which does not exist
 00000786815e[HD   ] ata1: device set to 0 which does not exist
 00000787108e[HD   ] ata1: device set to 1 which does not exist
-00001092244i[     ] found breakpoint at c0020310
-00001092244i[     ] stopped with ac1
-00001092244i[     ] reg 8 set to c0020310
-00001092244i[     ] reg 41 set to ffffffff
-00001092244i[     ] Removing breakpoint at c0020310
-00001092244i[     ] Removing breakpoint at c00203a2
-00001092244i[     ] Removing breakpoint at c0020902
-00001092244i[     ] addr c000f018 len 4
-00001092244i[     ] addr c00357fc len 4
-00001092244i[     ] setting breakpoint at c000efef
-00001092244i[     ] reg 4 set to c000efdc
-00001092244i[     ] reg 5 set to c000efdc
-00001092244i[     ] addr c000efef len 1
-00001092244i[     ] reg 8 set to c0020e0a
-00001092244i[     ] setting breakpoint at c000efef
-00001092244i[     ] setting breakpoint at c00203a2
-00001092244i[     ] setting breakpoint at c0020902
-00001208411i[     ] stopped with ac1
-00001208411i[     ] Removing breakpoint at c000efef
-00001208411i[     ] Removing breakpoint at c00203a2
-00001208411i[     ] Removing breakpoint at c0020902
-00001208411i[     ] addr c000ef8c len 4
-00001208411i[     ] addr c000ef88 len 4
-00001208411i[     ] addr c000ef8c len 4
-00001208411i[     ] addr c000efac len 4
-00001208411i[     ] addr c000efac len 4
-00001208411i[     ] addr c000ef8c len 4
-00001208411i[     ] addr c000ef88 len 4
-00001208411i[     ] addr c000efac len 4
-00001208411i[     ] addr c000efdc len 4
-00001208411i[     ] addr c000efdc len 4
-00001208411i[     ] addr c000efac len 4
-00001208411i[     ] addr c000ef88 len 4
-00001208411i[     ] addr c000efdc len 4
-00001208411i[     ] addr c00357fc len 4
+00002711364p[UNMP ] >>PANIC<< Shutdown port: shutdown requested
+00002711364i[SYS  ] Last time is 2
+00002711364i[NGUI ] bx_nogui_gui_c::exit() not implemented yet.
+00002711364i[CPU0 ] protected mode
+00002711364i[CPU0 ] CS.d_b = 32 bit
+00002711364i[CPU0 ] SS.d_b = 32 bit
+00002711364i[CPU0 ] | EAX=0000006e  EBX=00000000  ECX=c00b8000  EDX=00008900
+00002711364i[CPU0 ] | ESP=c000eca4  EBP=c000ecac  ESI=000001be  EDI=00000000
+00002711364i[CPU0 ] | IOPL=0 id vip vif ac vm rf nt of df if tf SF zf af pf cf
+00002711364i[CPU0 ] | SEG selector     base    limit G D
+00002711364i[CPU0 ] | SEG sltr(index|ti|rpl)     base    limit G D
+00002711364i[CPU0 ] |  CS:0008( 0001| 0|  0) 00000000 000fffff 1 1
+00002711364i[CPU0 ] |  DS:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00002711364i[CPU0 ] |  SS:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00002711364i[CPU0 ] |  ES:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00002711364i[CPU0 ] |  FS:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00002711364i[CPU0 ] |  GS:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00002711364i[CPU0 ] | EIP=c00272c0 (c00272bf)
+00002711364i[CPU0 ] | CR0=0x80010015 CR1=0 CR2=0x00000014
+00002711364i[CPU0 ] | CR3=0x00101000 CR4=0x00000000
+00002711364i[CPU0 ] >> ee
+00002711364i[CPU0 ] >> : out dx, al
+00002711364i[     ] restoring default signal behavior
+00002711364i[CTRL ] quit_sim called with exit code 1

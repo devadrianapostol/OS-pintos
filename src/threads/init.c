@@ -91,6 +91,7 @@ main (void)
   thread_init ();
   console_init ();  
 
+  //intr_disable();
   /* Greet user. */
   printf ("Pintos booting with %'"PRIu32" kB RAM...\n",
           init_ram_pages * PGSIZE / 1024);
@@ -431,7 +432,7 @@ locate_block_device (enum block_type role, const char *name)
 
 
 static void ady1(void* aux){
-	printf("hello, ady\n");
+	//printf("hello, ady\n");
 }
 
 void hello_pintos (void){

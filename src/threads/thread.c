@@ -11,6 +11,7 @@
 #include "threads/switch.h"
 #include "threads/synch.h"
 #include "threads/vaddr.h"
+#include "devices/timer.h"
 #ifdef USERPROG
 #include "userprog/process.h"
 #endif
@@ -58,6 +59,9 @@ static unsigned thread_ticks;   /* # of timer ticks since last yield. */
    If true, use multi-level feedback queue scheduler.
    Controlled by kernel command-line option "-o mlfqs". */
 bool thread_mlfqs;
+
+struct list sleeping_list;
+
 
 static void kernel_thread (thread_func *, void *aux);
 
@@ -262,6 +266,7 @@ thread_current (void)
      have overflowed its stack.  Each thread has less than 4 kB
      of stack, so a few big automatic arrays or moderate
      recursion can cause stack overflow. */
+  //printf("current thread: name %s, priority %d \n" , t->name, t->priority);
   ASSERT (is_thread (t));
   ASSERT (t->status == THREAD_RUNNING);
 
@@ -443,7 +448,8 @@ running_thread (void)
 static bool
 is_thread (struct thread *t)
 {
-  return t != NULL && t->magic == THREAD_MAGIC;
+
+  return t!=NULL && t->magic == THREAD_MAGIC;
 }
 
 /* Does basic initialization of T as a blocked thread named
@@ -560,6 +566,22 @@ schedule (void)
   ASSERT (cur->status != THREAD_RUNNING);
   ASSERT (is_thread (next));
 
+  struct list_elem *temp;
+  struct list_elem *e = list_begin(&sleeping_list);
+  int64_t ticks = timer_ticks();
+  while(e != list_end(&sleeping_list)){
+	  struct thread *t = list_entry(e, struct thread, allelem);
+	  if( ticks >=  t->wake_time){
+		  list_push_back(&ready_list, &t->elem);/*  Wake this thread up! */
+		  	 t->status = THREAD_READY;
+		  	 temp = e;
+		  	 e = list_next(e);
+		  	 list_remove(temp);/* Remove this thread from sleeping_list */
+	  } else {
+		 e = list_next(e);
+	  }
+  }
+
   if (cur != next)
     prev = switch_threads (cur, next);
   thread_schedule_tail (prev);
@@ -579,6 +601,30 @@ allocate_tid (void)
   return tid;
 }
 
+
+void thread_sleep(int64_t ticks)
+{
+	struct thread *cur = thread_current ();
+	enum intr_level old_level;
+
+	ASSERT (!intr_context ());
+
+	old_level = intr_disable ();
+	  if (cur != idle_thread){
+		  list_push_back (&sleeping_list, &cur->elem);
+		  cur->status = THREAD_SLEEPING;
+		  cur->wake_time = timer_ticks() + ticks;
+		  schedule ();
+	  }
+	intr_set_level (old_level);
+}
+
+void thread_wake(void)
+{
+
+}
+
 /* Offset of `stack' member within `struct thread'.
    Used by switch.S, which can't figure it out on its own. */
 uint32_t thread_stack_ofs = offsetof (struct thread, stack);
+
